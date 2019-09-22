@@ -18,12 +18,13 @@ public class StudentService {
         return StudentServiceHolder.instance;
     }
 
-    public void printFindingStudents(String info, List<Student> students){
+    public void printFindingStudents(String info, List<Student> students) {
         System.out.println(info);
-        for (Student student:students
-             ) {
+        for (Student student : students
+        ) {
             System.out.println(student);
         }
+        System.out.println();
     }
 
     public ArrayList<Student> findByFaculty(String faculty, List<Student> students) {
@@ -36,6 +37,19 @@ public class StudentService {
         }
         return findByFacultyStudents;
     }
+
+    public ArrayList<Student> findByYear(int year, List<Student> students) {
+        ArrayList<Student> findByYearStudents = new ArrayList<>();
+        for (Student student : students
+        ) {
+            if (year < student.getBirthday().getYear()) {
+                findByYearStudents.add(student);
+            }
+        }
+        return findByYearStudents;
+    }
+
+    
 
 }
 

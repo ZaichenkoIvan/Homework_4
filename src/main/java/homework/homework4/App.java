@@ -23,6 +23,7 @@ public class App
         findingStudents = studentService.findByFaculty("FICT",students);
         studentService.printFindingStudents("Students find by faculty FICT", findingStudents);
 
-
+        findingStudents = studentService.findByYear(1990,students);
+        studentService.printFindingStudents("Students find by year more 1990", findingStudents);
     }
 }
