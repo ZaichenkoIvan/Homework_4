@@ -28,5 +28,8 @@ public class App
 
         findingStudents = studentService.findByGroup("IP-64",students);
         studentService.printFindingStudents("Students find by group IP-64", findingStudents);
+
+        findingStudents = studentService.findByFacultyAndCourse("FICT",4,students);
+        studentService.printFindingStudents("Students find by faculty FICT and course 4", findingStudents);
     }
 }

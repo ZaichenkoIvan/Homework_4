@@ -60,5 +60,16 @@ public class StudentService {
         return findByGroupStudents;
     }
 
+    public ArrayList<Student> findByFacultyAndCourse(String faculty, int cource, List<Student> students) {
+        ArrayList<Student> findByFacultyAndCourseStudents = new ArrayList<>();
+        for (Student student : students
+        ) {
+            if (faculty.equals(student.getFaculty()) && student.getCourse()==cource) {
+                findByFacultyAndCourseStudents.add(student);
+            }
+        }
+        return findByFacultyAndCourseStudents;
+    }
+
 }
 

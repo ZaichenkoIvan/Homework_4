@@ -57,7 +57,7 @@ public final class StudentsInit {
                 .withAddress("Kiev")
                 .withTel("093333333333")
                 .withFaculty("FICT")
-                .withCourse(4)
+                .withCourse(2)
                 .withGroup("IP-62")
                 .build(vovaTsarukperson);
 
