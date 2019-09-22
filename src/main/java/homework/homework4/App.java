@@ -25,5 +25,8 @@ public class App
 
         findingStudents = studentService.findByYear(1990,students);
         studentService.printFindingStudents("Students find by year more 1990", findingStudents);
+
+        findingStudents = studentService.findByGroup("IP-64",students);
+        studentService.printFindingStudents("Students find by group IP-64", findingStudents);
     }
 }

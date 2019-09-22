@@ -26,7 +26,7 @@ public final class StudentsInit {
                 .withTel("09311111111")
                 .withFaculty("IPSA")
                 .withCourse(4)
-                .withGroup("IP-64")
+                .withGroup("IP-62")
                 .build(ivanZaichenkoPerson);
 
         Person vasylZaichenkoPerson = new Person.PersonBuilder()
@@ -58,7 +58,7 @@ public final class StudentsInit {
                 .withTel("093333333333")
                 .withFaculty("FICT")
                 .withCourse(4)
-                .withGroup("IP-64")
+                .withGroup("IP-62")
                 .build(vovaTsarukperson);
 
         List<Student> students = new ArrayList<>();

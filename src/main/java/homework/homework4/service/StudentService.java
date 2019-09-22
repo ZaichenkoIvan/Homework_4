@@ -49,7 +49,16 @@ public class StudentService {
         return findByYearStudents;
     }
 
-    
+    public ArrayList<Student> findByGroup(String group, List<Student> students) {
+        ArrayList<Student> findByGroupStudents = new ArrayList<>();
+        for (Student student : students
+        ) {
+            if (group.equals(student.getGroup())) {
+                findByGroupStudents.add(student);
+            }
+        }
+        return findByGroupStudents;
+    }
 
 }
 
