@@ -1,15 +1,16 @@
 package hometask.hometask7.example1;
 
+import hometask.hometask7.example1.sort.SelectionSort;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class SelectionSortTest {
 
     @Test
-    public void shouldReturnSortArrayList(){
+    public void shouldReturnSortArrayList() {
         User student1 = new User("dimoooon", "surname", 20, "first@gmail.com");
         User student2 = new User("anton", "surname", 20, "second@gmail.com");
         User student3 = new User("dimoooon", "surname", 15, "third@gmail.com");
@@ -25,7 +26,7 @@ public class SelectionSortTest {
         studentsActual.add(student3);
         SelectionSort.sort(studentsActual);
 
-        assertArrayEquals(studentsExpected.toArray(),studentsActual.toArray());
+        assertArrayEquals(studentsExpected.toArray(), studentsActual.toArray());
 
     }
 }
