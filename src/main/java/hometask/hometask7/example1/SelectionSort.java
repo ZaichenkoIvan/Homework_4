@@ -13,7 +13,7 @@ public final class SelectionSort {
         for (int left = 0; left < users.size(); left++) {
             int minInd = left;
             for (int i = left; i < users.size(); i++) {
-                if (users.get(i).compareTo(users.get(minInd)) > 0) {
+                if (users.get(i).compareTo(users.get(minInd)) < 0) {
                     minInd = i;
                 }
             }
