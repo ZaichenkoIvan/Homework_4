@@ -46,6 +46,7 @@ public class User implements Comparable<User> {
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
+                ", email='" + email + '\'' +
                 '}';
     }
 

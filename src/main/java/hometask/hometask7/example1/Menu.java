@@ -2,14 +2,18 @@ package hometask.hometask7.example1;
 
 import hometask.hometask7.example1.sort.BubbleSort;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Menu {
 
     private static ArrayList<User> users = new ArrayList<>();
+    private ResourceBundle lang;
 
-    void chooseMenuLang() {
+    void chooseMenuLang() throws UnsupportedEncodingException {
         Scanner in = new Scanner(System.in);
         System.out.println("Choose language/Оберіть мову");
         System.out.println("English (1)");
@@ -19,36 +23,35 @@ public class Menu {
         chooseLang(chooseLanguage);
     }
 
-    void chooseLang(int in) {
-
-        String lang;
+    void chooseLang(int in) throws UnsupportedEncodingException {
 
         try {
             if (in == 1) {
-                lang = "Eng";
+                lang = ResourceBundle.getBundle("resources", new Locale("en"), new UTF8Control());
             } else if (in == 2) {
-                lang = "Ua";
+                lang = ResourceBundle.getBundle("resources", new Locale("ua"), new UTF8Control());
             } else
                 chooseMenuLang();
         } catch (Exception e) {
-            throw new IllegalArgumentException("Uncorrected argument");
+            throw new IllegalArgumentException(lang.getString("uncorrectedArgument"));
         }
         menu();
     }
 
-    void menu() {
-        System.out.println("Menu");
-        System.out.println("1 - View all Student");
-        System.out.println("2 - Add new Student");
-        System.out.println("3 - Sort Student");
-        System.out.println("4 - Choose language");
+    void menu() throws UnsupportedEncodingException {
+
+        System.out.println(lang.getString("menu"));
+        System.out.println("1 - " + lang.getString("viewStudent"));
+        System.out.println("2 - "+ lang.getString("addStudent"));
+        System.out.println("3 - "+ lang.getString("sortStudent"));
+        System.out.println("4 - "+ lang.getString("chooseLanguage"));
         Scanner in = new Scanner(System.in);
 
         int choice;
         try {
             choice = in.nextInt();
         } catch (Exception e) {
-            throw new IllegalArgumentException("Uncorrected argument");
+            throw new IllegalArgumentException(lang.getString("uncorrectedArgument"));
         }
 
         switch (choice) {
@@ -70,9 +73,9 @@ public class Menu {
 
     void printAllUsers() {
         if (users.isEmpty())
-            System.out.println("No students yet");
+            System.out.println(lang.getString("noStudentYet"));
         else {
-            System.out.println("\n" + "List of students");
+            System.out.println("\n" + lang.getString("listStudent"));
             for (User user : users
             ) {
                 System.out.println(user);
@@ -81,7 +84,7 @@ public class Menu {
         }
     }
 
-    void createUserFromConsole() {
+    void createUserFromConsole() throws UnsupportedEncodingException {
         String nameStudent;
         String surnameStudent;
         int age;
@@ -90,22 +93,22 @@ public class Menu {
         Scanner in = new Scanner(System.in);
 
         try {
-            System.out.println("Name Student : ");
+            System.out.println(lang.getString("nameStudent"));
             nameStudent = in.nextLine();
 
-            System.out.println("Surname Student : ");
+            System.out.println(lang.getString("surnameStudent"));
             surnameStudent = in.nextLine();
 
             email = writeEmail(in);
 
-            System.out.println("Age Student : ");
+            System.out.println(lang.getString("ageStudent"));
             age = in.nextInt();
 
         } catch (Exception e) {
-            throw new IllegalArgumentException("Uncorrected argument");
+            throw new IllegalArgumentException(lang.getString("uncorrectedArgument"));
         }
         users.add(new User(nameStudent, surnameStudent, age, email));
-        System.out.println("Student created\n");
+        System.out.println(lang.getString("studentCreated")+"\n");
 
         menu();
     }
@@ -113,16 +116,16 @@ public class Menu {
     void sortUser() {
         //users.sort(users.get(0).getUserComparator());
         BubbleSort.sort(users);
-        System.out.println("Users are sorted\n");
+        System.out.println(lang.getString("usersAreSorted")+"\n");
     }
 
     private String writeEmail(Scanner in) {
 
-        System.out.println("Email Student : ");
+        System.out.println(lang.getString("emailStudent"));
         String email = in.nextLine();
 
         if (!EmailValidator.validate(email)) {
-            System.out.println("Uncorrected email!!!!");
+            System.out.println(lang.getString("uncorrectedEmail"));
             writeEmail(in);
         }
 
