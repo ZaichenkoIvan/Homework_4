@@ -2,15 +2,15 @@ package hometask.hometask7.example1;
 
 import java.util.Comparator;
 
-public class User {
+public class User implements Comparable<User> {
     private final Comparator<User> USER_COMPARATOR_BY_AGE =
-            (user1, user2) -> user1.age - user2.age;
+            Comparator.comparingInt(user -> user.age);
 
-    private final Comparator<User> USER_COMPARATOR_BY_NANE =
-            (user1, user2) -> user1.name.compareTo(user2.name);
+    private final Comparator<User> USER_COMPARATOR_BY_NAME =
+            Comparator.comparing(user -> user.name);
 
     private final Comparator<User> USER_COMPARATOR_BY_SURNAME =
-            (user1, user2) -> user1.surname.compareTo(user2.surname);
+            Comparator.comparing(user -> user.surname);
 
     private String name;
     private String surname;
@@ -25,7 +25,7 @@ public class User {
     }
 
     public Comparator<User> getUserComparator() {
-        return USER_COMPARATOR_BY_NANE.thenComparing(USER_COMPARATOR_BY_SURNAME.thenComparing(USER_COMPARATOR_BY_AGE));
+        return USER_COMPARATOR_BY_NAME.thenComparing(USER_COMPARATOR_BY_SURNAME.thenComparing(USER_COMPARATOR_BY_AGE));
     }
 
     public String getName() {
@@ -48,18 +48,9 @@ public class User {
                 ", age=" + age +
                 '}';
     }
+
+    @Override
+    public int compareTo(User o) {
+        return this.getUserComparator().compare(this, o);
+    }
 }
-//
-//final class  Utility{
-//    private Utility() {
-//    }
-//
-//    public void swap(User[]users,int i, int j){
-////        if(users[i]>users[j])
-//        if(USER_COMPARATOR_BY_AGE.compare(users[i],users[j])>0){
-//            //
-//        }
-//    }
-//}
-
-
