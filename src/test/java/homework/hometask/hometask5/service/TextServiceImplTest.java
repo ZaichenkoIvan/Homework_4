@@ -6,6 +6,8 @@ import hometask.hometask5.domain.Sentence;
 import hometask.hometask5.domain.Symbol;
 import hometask.hometask5.domain.Text;
 import hometask.hometask5.domain.Word;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import static org.junit.Assert.assertNull;
 
 public class TextServiceImplTest {
     private final TextServiceImpl textService = new TextServiceImpl();
+
 
     @Test
     public void shouldReturnNullStringForNullText() {

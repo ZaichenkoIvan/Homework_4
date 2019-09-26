@@ -66,6 +66,13 @@ public class Text {
 
     @Override
     public int hashCode() {
+        class Inner{
+            void display(){
+                System.out.println(header);
+            }
+        }
+        Inner inner = new Inner();
+        inner.display();
         return Objects.hash(header, sentences);
     }
 
