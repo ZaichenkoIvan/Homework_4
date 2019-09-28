@@ -54,7 +54,6 @@ public final class Runner {
         }
     }
 
-
     private static List<Method> getMethodByAnnotation(Method[] methods, Class<? extends Annotation> clazz) {
         List<Method> resultMethods = new ArrayList<>();
         for (Method method : methods) {

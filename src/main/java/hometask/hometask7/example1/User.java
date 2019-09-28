@@ -54,4 +54,5 @@ public class User implements Comparable<User> {
     public int compareTo(User o) {
         return this.getUserComparator().compare(this, o);
     }
+
 }
