@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class StudentServiceImpl implements StudentService {
 
-    private static  StudentServiceImpl studentService;
+    private static StudentServiceImpl studentService;
     private final StudentRepository studentRepository;
 
     private StudentServiceImpl(StudentRepository studentRepository) {
@@ -38,6 +38,11 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return studentRepository.findById(id);
+    }
+
+    @Override
+    public ArrayList<Student> findAll() {
+        return studentRepository.findAll();
     }
 
     @Override
