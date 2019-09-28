@@ -2,7 +2,6 @@ package hometask.hometask4.init;
 
 import hometask.hometask4.domain.Address;
 import hometask.hometask4.domain.Department;
-import hometask.hometask4.domain.PhoneNumber;
 import hometask.hometask4.domain.Student;
 import hometask.hometask4.repository.StudentRepository;
 import hometask.hometask4.repository.StudentRepositoryImpl;
@@ -23,37 +22,37 @@ public class Menu {
         Student ivan = Student.builder()
                 .withName("Ivan")
                 .withSurname("Zaichenko")
-                .withId(1L)
                 .withBirthday(LocalDate.of(1999, 1, 13))
                 .withAddress(new Address("Uman", "South", 13))
                 .withGroup("IP-62")
-                .withPhoneNumber(new PhoneNumber(380, 9393939))
+                .withPhoneNumber("380911111111")
                 .withCourse(5)
                 .withDepartment(kpi)
+                .withEmail("ivan@gmail.com")
                 .build();
 
         Student vasyl = Student.builder()
                 .withName("Vasyl")
                 .withSurname("Zaichenko")
-                .withId(2L)
                 .withBirthday(LocalDate.of(1999, 1, 13))
                 .withAddress(new Address("Uman", "South", 14))
                 .withGroup("IP-64")
-                .withPhoneNumber(new PhoneNumber(380, 92222222))
+                .withPhoneNumber("380922222222")
                 .withCourse(4)
                 .withDepartment(kpi)
+                .withEmail("vasv@gmail.com")
                 .build();
 
         Student volodymyr = Student.builder()
                 .withName("Volodymyr")
                 .withSurname("Tsaruk")
-                .withId(3L)
                 .withBirthday(LocalDate.of(1999, 6, 11))
                 .withAddress(new Address("Uman", "South", 13))
                 .withGroup("IP-64")
-                .withPhoneNumber(new PhoneNumber(380, 93333333))
+                .withPhoneNumber("380933333333")
                 .withCourse(4)
                 .withDepartment(kpi)
+                .withEmail("vv@gmail.com")
                 .build();
 
         studentService.register(ivan);

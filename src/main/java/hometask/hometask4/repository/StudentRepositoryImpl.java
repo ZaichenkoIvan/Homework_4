@@ -34,6 +34,11 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
+    public ArrayList<Student> findAll() {
+        return new ArrayList<>(idToStudents.values());
+    }
+
+    @Override
     public void update(Student student) {
         idToStudents.replace(student.getId(), student);
     }

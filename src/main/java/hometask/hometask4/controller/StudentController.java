@@ -20,6 +20,8 @@ public class StudentController {
         return studentService.findById(id);
     }
 
+    public ArrayList<Student> findAll (){return  studentService.findAll();}
+
     public void update(Student student) {
         studentService.update(student);
     }
