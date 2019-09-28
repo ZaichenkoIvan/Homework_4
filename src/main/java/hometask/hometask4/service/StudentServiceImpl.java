@@ -7,8 +7,9 @@ import hometask.hometask4.repository.StudentRepository;
 import java.util.ArrayList;
 
 public class StudentServiceImpl implements StudentService {
-    private StudentRepository studentRepository;
-    private static StudentServiceImpl studentService;
+
+    private static  StudentServiceImpl studentService;
+    private final StudentRepository studentRepository;
 
     private StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
