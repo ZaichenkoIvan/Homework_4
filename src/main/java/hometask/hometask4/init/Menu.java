@@ -3,17 +3,21 @@ package hometask.hometask4.init;
 import hometask.hometask4.domain.Address;
 import hometask.hometask4.domain.Department;
 import hometask.hometask4.domain.Student;
-import hometask.hometask4.repository.StudentRepository;
-import hometask.hometask4.repository.StudentRepositoryImpl;
 import hometask.hometask4.service.StudentService;
-import hometask.hometask4.service.StudentServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class Menu {
 
-    private StudentRepository studentRepository = StudentRepositoryImpl.getInstance();
-    private StudentService studentService = StudentServiceImpl.getInstance(studentRepository);
+    private StudentService studentService;
+
+    @Autowired
+    public Menu(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     public void run() {
 
@@ -56,8 +60,8 @@ public class Menu {
                 .build();
 
         studentService.register(ivan);
-        studentService.register(volodymyr);
         studentService.register(vasyl);
+        studentService.register(volodymyr);
 
     }
 }

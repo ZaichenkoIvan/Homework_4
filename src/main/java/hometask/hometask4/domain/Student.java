@@ -15,7 +15,7 @@ public class Student implements Comparable<Student> {
     private final String group;
     private final int course;
     private final String email;
-    private static Long counter =0L;
+    private static Long counter = 0L;
 
     private final Comparator<Student> STUDENT_COMPARATOR_BY_AGE =
             Comparator.comparingInt(student -> LocalDate.now().getYear() - student.birthday.getYear());

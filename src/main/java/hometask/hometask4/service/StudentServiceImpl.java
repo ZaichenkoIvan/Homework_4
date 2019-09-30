@@ -3,24 +3,19 @@ package hometask.hometask4.service;
 
 import hometask.hometask4.domain.Student;
 import hometask.hometask4.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
-    private static StudentServiceImpl studentService;
-    private final StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
-    private StudentServiceImpl(StudentRepository studentRepository) {
+    @Autowired
+    public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-    }
-
-    public static StudentService getInstance(StudentRepository studentRepository) {
-        if (studentService == null) {
-            studentService = new StudentServiceImpl(studentRepository);
-        }
-
-        return studentService;
     }
 
     public Student register(Student student) {

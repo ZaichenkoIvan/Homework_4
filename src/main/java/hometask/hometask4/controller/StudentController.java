@@ -1,16 +1,21 @@
 package hometask.hometask4.controller;
 
 import hometask.hometask4.domain.Student;
-import hometask.hometask4.repository.StudentRepository;
-import hometask.hometask4.repository.StudentRepositoryImpl;
 import hometask.hometask4.service.StudentService;
-import hometask.hometask4.service.StudentServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+@Component
 public class StudentController {
-    private StudentRepository studentRepository = StudentRepositoryImpl.getInstance();
-    private StudentService studentService = StudentServiceImpl.getInstance(studentRepository);
+
+    private StudentService studentService;
+
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     public Student register(Student student) {
         return studentService.register(student);
@@ -20,7 +25,9 @@ public class StudentController {
         return studentService.findById(id);
     }
 
-    public ArrayList<Student> findAll (){return  studentService.findAll();}
+    public ArrayList<Student> findAll() {
+        return studentService.findAll();
+    }
 
     public void update(Student student) {
         studentService.update(student);

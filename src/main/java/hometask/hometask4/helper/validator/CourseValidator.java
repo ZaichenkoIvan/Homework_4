@@ -1,8 +1,12 @@
 package hometask.hometask4.helper.validator;
 
+
+import org.springframework.stereotype.Component;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Component
 public class CourseValidator implements Validator {
     private final String NAME_PATTERN = "[1-6]{1}";
 
