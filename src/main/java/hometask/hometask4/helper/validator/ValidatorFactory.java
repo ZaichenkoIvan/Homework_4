@@ -1,5 +1,8 @@
 package hometask.hometask4.helper.validator;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public final class ValidatorFactory {
     private ValidatorFactory() {
     }

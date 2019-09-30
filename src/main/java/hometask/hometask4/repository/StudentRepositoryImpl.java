@@ -1,26 +1,21 @@
 package hometask.hometask4.repository;
 
 import hometask.hometask4.domain.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class StudentRepositoryImpl implements StudentRepository {
-    private static StudentRepository studentRepository;
 
     private Map<Long, Student> idToStudents = new HashMap<>();
     private static Long counter = 0L;
 
-    private StudentRepositoryImpl() {
-    }
-
-    public static StudentRepository getInstance(){
-        if(studentRepository==null){
-            studentRepository = new StudentRepositoryImpl();
-        }
-
-        return studentRepository;
+    @Autowired
+    public StudentRepositoryImpl() {
     }
 
     @Override
@@ -50,7 +45,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     public ArrayList<Student> findByDepartment(Long idDepartment) {
         ArrayList<Student> findByFacultyStudents = new ArrayList<>();
-        for (Long i = 1L; i < idToStudents.size()+1; i++) {
+        for (Long i = 1L; i < idToStudents.size() + 1; i++) {
             if (idDepartment.equals(idToStudents.get(i).getDepartment().getId())) {
                 findByFacultyStudents.add(idToStudents.get(i));
             }
@@ -60,7 +55,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     public ArrayList<Student> findByYear(int year) {
         ArrayList<Student> findByYearStudents = new ArrayList<>();
-        for (Long i = 1L; i < idToStudents.size()+1; i++) {
+        for (Long i = 1L; i < idToStudents.size() + 1; i++) {
             if (year < idToStudents.get(i).getBirthday().getYear()) {
                 findByYearStudents.add(idToStudents.get(i));
             }
@@ -71,7 +66,7 @@ public class StudentRepositoryImpl implements StudentRepository {
     @Override
     public ArrayList<Student> findByGroup(String group) {
         ArrayList<Student> findByGroupStudents = new ArrayList<>();
-        for (Long i = 1L; i < idToStudents.size()+1; i++) {
+        for (Long i = 1L; i < idToStudents.size() + 1; i++) {
             if (group.equals(idToStudents.get(i).getGroup())) {
                 findByGroupStudents.add(idToStudents.get(i));
             }
@@ -81,7 +76,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     public ArrayList<Student> findByDepartmentAndCourse(Long idDepartment, int cource) {
         ArrayList<Student> findByDepartmentAndCourseStudents = new ArrayList<>();
-        for (Long i = 1L; i < idToStudents.size()+1; i++) {
+        for (Long i = 1L; i < idToStudents.size() + 1; i++) {
             if (idDepartment.equals(idToStudents.get(i).getDepartment().getId())
                     && cource == idToStudents.get(i).getCourse()) {
                 findByDepartmentAndCourseStudents.add(idToStudents.get(i));
