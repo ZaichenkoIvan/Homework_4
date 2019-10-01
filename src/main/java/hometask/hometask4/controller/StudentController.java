@@ -21,6 +21,10 @@ public class StudentController {
         return studentService.register(student);
     }
 
+    public Student login(String email, String password) {
+        return studentService.login(email, password);
+    }
+
     public Student findById(Long id) {
         return studentService.findById(id);
     }

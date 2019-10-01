@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public interface StudentService {
     Student register(Student student);
 
+    Student login (String email, String password);
+
     Student findById(Long id);
 
     ArrayList<Student> findAll();

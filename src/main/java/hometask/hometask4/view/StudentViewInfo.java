@@ -62,11 +62,13 @@ public class StudentViewInfo {
         System.out.println("1 - " + lang.getString("viewStudent"));
         System.out.println("2 - " + lang.getString("addStudent"));
         System.out.println("3 - " + lang.getString("sortStudent"));
-        System.out.println("4 - " + lang.getString("chooseLanguage"));
+        System.out.println("4 - " + lang.getString("loginStudent"));
         System.out.println("5 - " + lang.getString("inputId"));
         System.out.println("6 - " + lang.getString("inputIdDepartment"));
         System.out.println("7 - " + lang.getString("inputGroup"));
         System.out.println("8 - " + lang.getString("inputCourse"));
+        System.out.println("9 - " + lang.getString("chooseLanguage"));
+
 
         int choice;
         try {
@@ -86,7 +88,7 @@ public class StudentViewInfo {
                 sortUser();
                 break;
             case 4:
-                chooseMenuLang();
+                System.out.println(loginStudent());
                 break;
             case 5:
                 System.out.println(findById());
@@ -99,6 +101,9 @@ public class StudentViewInfo {
                 break;
             case 8:
                 printAllUsers(findByDepartmentAndCourse());
+                break;
+            case 9:
+                chooseMenuLang();
                 break;
         }
         menu();
@@ -131,6 +136,9 @@ public class StudentViewInfo {
         System.out.println(lang.getString("groupStudent"));
         String group = in.nextLine();
 
+        System.out.println(lang.getString("passwordStudent"));
+        String password = in.nextLine();
+
         Student student = Student.builder()
                 .withName(name)
                 .withSurname(surname)
@@ -140,6 +148,7 @@ public class StudentViewInfo {
                 .withCourse(course)
                 .withDepartment(department)
                 .withEmail(email)
+                .withPassword(password)
                 .build();
 
         studentController.register(student);
@@ -151,6 +160,16 @@ public class StudentViewInfo {
     private void sortUser() {
         System.out.println(lang.getString("usersAreSorted") + "\n");
         printAllUsers(BubbleSort.sort(studentController.findAll()));
+    }
+
+    private Student loginStudent(){
+        String email = writeFieldWithValidator("email");
+
+        System.out.println(lang.getString("passwordStudent"));
+        String password = in.nextLine();
+
+        return studentController.login(email,password);
+
     }
 
     private LocalDate parseStringToLocalDate(String date) {

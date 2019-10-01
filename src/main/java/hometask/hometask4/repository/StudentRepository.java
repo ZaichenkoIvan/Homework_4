@@ -17,6 +17,8 @@ public interface StudentRepository {
 
     Student deleteById(Long id);
 
+    Student findByEmail(String email);
+
     ArrayList<Student> findByDepartment(Long idDepartment);
 
     ArrayList<Student> findByYear(int year);

@@ -43,6 +43,18 @@ public class StudentRepositoryImpl implements StudentRepository {
         return idToStudents.remove(id);
     }
 
+    @Override
+    public Student findByEmail(String email) {
+        Student student = null;
+        for (Long i = 1L; i < idToStudents.size() + 1; i++) {
+            if (idToStudents.get(i).getEmail().equals(email)) {
+                student = idToStudents.get(i);
+                break;
+            }
+        }
+        return student;
+    }
+
     public ArrayList<Student> findByDepartment(Long idDepartment) {
         ArrayList<Student> findByFacultyStudents = new ArrayList<>();
         for (Long i = 1L; i < idToStudents.size() + 1; i++) {

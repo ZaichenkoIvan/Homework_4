@@ -33,6 +33,7 @@ public class Menu {
                 .withCourse(5)
                 .withDepartment(kpi)
                 .withEmail("ivan@gmail.com")
+                .withPassword("ivanIVAN70")
                 .build();
 
         Student vasyl = Student.builder()
@@ -45,6 +46,7 @@ public class Menu {
                 .withCourse(4)
                 .withDepartment(kpi)
                 .withEmail("vasv@gmail.com")
+                .withPassword("vasVas25")
                 .build();
 
         Student volodymyr = Student.builder()
@@ -57,6 +59,7 @@ public class Menu {
                 .withCourse(4)
                 .withDepartment(kpi)
                 .withEmail("vv@gmail.com")
+                .withPassword("vovaVOVA7")
                 .build();
 
         studentService.register(ivan);
