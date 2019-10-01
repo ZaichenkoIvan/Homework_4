@@ -27,4 +27,3 @@ public class ConsoleApplication {
         main.studentViewInfo.run();
     }
 }
-

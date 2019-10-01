@@ -15,7 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
@@ -102,9 +103,9 @@ public class StudentServiceImplTest {
         ArrayList<Student> studentsExpected = new ArrayList<>();
         studentsExpected.add(studentExpected);
 
-        when(studentRepository.findByDepartmentAndCourse(228L,4)).thenReturn(studentsExpected);
+        when(studentRepository.findByDepartmentAndCourse(228L, 4)).thenReturn(studentsExpected);
 
-        ArrayList<Student> studentsActual = studentService.findByDepartmentAndCourse(228L,4);
+        ArrayList<Student> studentsActual = studentService.findByDepartmentAndCourse(228L, 4);
         assertArrayEquals(studentsExpected.toArray(), studentsActual.toArray());
     }
 
