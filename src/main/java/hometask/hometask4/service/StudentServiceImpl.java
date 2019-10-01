@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -18,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student register(Student student) {
+    public Optional<Student> register(Student student) {
         if (student == null) {
             throw new IllegalArgumentException("Student not exist");
         }
@@ -27,12 +28,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student login(String email, String password) {
+    public Optional<Student> login(String email, String password) {
         return studentRepository.findByEmail(email);
     }
 
     @Override
-    public Student findById(Long id) {
+    public Optional<Student> findById(Long id) {
         if (id < 0) {
             throw new IllegalArgumentException("Id must be positive");
         }
@@ -54,7 +55,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student deleteById(Long id) {
+    public Optional<Student> deleteById(Long id) {
         if (id < 0) {
             throw new IllegalArgumentException("Id must be positive");
         }

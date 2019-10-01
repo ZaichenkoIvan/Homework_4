@@ -3,19 +3,20 @@ package hometask.hometask4.service;
 import hometask.hometask4.domain.Student;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public interface StudentService {
-    Student register(Student student);
+    Optional<Student> register(Student student);
 
-    Student login (String email, String password);
+    Optional<Student> login (String email, String password);
 
-    Student findById(Long id);
+    Optional<Student> findById(Long id);
 
     ArrayList<Student> findAll();
 
     void update(Student student);
 
-    Student deleteById(Long id);
+    Optional<Student> deleteById(Long id);
 
     ArrayList<Student> findByDepartment(Long idDepartment);
 

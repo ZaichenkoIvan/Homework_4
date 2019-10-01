@@ -13,6 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -35,28 +36,28 @@ public class StudentServiceImplTest {
     @Test
     public void shouldReturnRegisterStudent() {
         Student studentExpected = Student.builder().build();
-        when(studentRepository.save(any(Student.class))).thenReturn(studentExpected);
+        when(studentRepository.save(any(Student.class))).thenReturn(Optional.ofNullable(studentExpected));
 
-        Student studentActual = studentService.register(studentExpected);
-        assertEquals(studentExpected, studentActual);
+        Optional<Student> studentActual = studentService.register(studentExpected);
+        studentActual.ifPresent(student -> assertEquals(studentExpected, student));
     }
 
     @Test
     public void shouldReturnStudentById() {
         Student studentExpected = Student.builder().build();
-        when(studentRepository.findById(1L)).thenReturn(studentExpected);
+        when(studentRepository.findById(1L)).thenReturn(Optional.ofNullable(studentExpected));
 
-        Student studentActual = studentService.findById(1L);
-        assertEquals(studentExpected, studentActual);
+        Optional<Student> studentActual = studentService.findById(1L);
+        studentActual.ifPresent(student -> assertEquals(studentExpected, student));
     }
 
     @Test
     public void shouldReturnDeleteStudent() {
         Student studentExpected = Student.builder().build();
-        when(studentRepository.deleteById(1L)).thenReturn(studentExpected);
+        when(studentRepository.deleteById(1L)).thenReturn(Optional.ofNullable(studentExpected));
 
-        Student studentActual = studentService.deleteById(1L);
-        assertEquals(studentExpected, studentActual);
+        Optional<Student> studentActual = studentService.deleteById(1L);
+        studentActual.ifPresent(student -> assertEquals(studentExpected, student));
     }
 
     @Test

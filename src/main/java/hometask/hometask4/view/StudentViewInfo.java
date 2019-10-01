@@ -3,7 +3,7 @@ package hometask.hometask4.view;
 import hometask.hometask4.controller.StudentController;
 import hometask.hometask4.domain.Department;
 import hometask.hometask4.domain.Student;
-import hometask.hometask4.helper.localization.UTF8Control;
+import hometask.hometask4.helper.utility.UTF8Control;
 import hometask.hometask4.helper.sort.BubbleSort;
 import hometask.hometask4.helper.validator.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 @Component
 public class StudentViewInfo {
@@ -162,7 +159,7 @@ public class StudentViewInfo {
         printAllUsers(BubbleSort.sort(studentController.findAll()));
     }
 
-    private Student loginStudent(){
+    private Optional<Student> loginStudent(){
         String email = writeFieldWithValidator("email");
 
         System.out.println(lang.getString("passwordStudent"));
@@ -193,7 +190,7 @@ public class StudentViewInfo {
         return fieldInput;
     }
 
-    private Student findById(){
+    private Optional<Student> findById(){
         System.out.println(lang.getString("inputId"));
         return studentController.findById(in.nextLong());
     }
