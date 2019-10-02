@@ -1,5 +1,7 @@
 package hometask.hometask4.domain;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Objects;
@@ -15,9 +17,12 @@ public class Student implements Comparable<Student>, StudentPrototype {
     private final String phoneNumber;
     private final String group;
     private final int course;
-    private final String email;
     private final String password;
     private static Long counter = 0L;
+
+//    @Email(message = "{student.email.invalid}")
+//    @NotEmpty(message = "Please enter email")
+    private final String email;
 
     private final Comparator<Student> STUDENT_COMPARATOR_BY_AGE =
             Comparator.comparingInt(student -> LocalDate.now().getYear() - student.birthday.getYear());

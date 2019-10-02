@@ -3,8 +3,8 @@ package hometask.hometask4.view;
 import hometask.hometask4.controller.StudentController;
 import hometask.hometask4.domain.Department;
 import hometask.hometask4.domain.Student;
-import hometask.hometask4.helper.utility.UTF8Control;
 import hometask.hometask4.helper.sort.BubbleSort;
+import hometask.hometask4.helper.utility.UTF8Control;
 import hometask.hometask4.helper.validator.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -136,6 +136,10 @@ public class StudentViewInfo {
         System.out.println(lang.getString("passwordStudent"));
         String password = in.nextLine();
 
+//        javax.validation.ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//
+//        Validator validator = factory.getValidator();
+
         Student student = Student.builder()
                 .withName(name)
                 .withSurname(surname)
@@ -148,11 +152,22 @@ public class StudentViewInfo {
                 .withPassword(password)
                 .build();
 
+//        Set<ConstraintViolation<Student>> constraintViolations = validator.validate(student);
+//
+//        if (constraintViolations.size() > 0) {
+//            for (ConstraintViolation<Student> violation : constraintViolations) {
+//                System.out.println(violation.getMessage());
+//            }
+//        } else {
+//            System.out.println("Valid Object");
+//        }
+
         studentController.register(student);
         System.out.println(lang.getString("studentCreated") + "\n");
 
         menu();
     }
+
 
     private void sortUser() {
         System.out.println(lang.getString("usersAreSorted") + "\n");
