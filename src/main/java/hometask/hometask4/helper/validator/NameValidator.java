@@ -7,11 +7,7 @@ import java.util.regex.Pattern;
 
 @Component
 public final class NameValidator implements Validator {
-    private final String NAME_PATTERN = "[a-zA-Z]{2,}";
-
-    public NameValidator() {
-
-    }
+    private static final String NAME_PATTERN = "[a-zA-Z]{2,}";
 
     @Override
     public boolean validate(final String hex) {

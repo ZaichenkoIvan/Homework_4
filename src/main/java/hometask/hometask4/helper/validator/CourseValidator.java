@@ -8,11 +8,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class CourseValidator implements Validator {
-    private final String NAME_PATTERN = "[1-6]{1}";
-
-    public CourseValidator() {
-
-    }
+    private static final String NAME_PATTERN = "[1-6]{1}";
 
     @Override
     public boolean validate(final String hex) {

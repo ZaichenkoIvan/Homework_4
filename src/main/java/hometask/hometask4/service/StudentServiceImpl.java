@@ -2,11 +2,14 @@ package hometask.hometask4.service;
 
 
 import hometask.hometask4.domain.Student;
+import hometask.hometask4.exception.UncorrectLoginException;
+import hometask.hometask4.helper.utility.PasswordUtils;
 import hometask.hometask4.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -18,16 +21,36 @@ public class StudentServiceImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Student register(Student student) {
+    public Optional<Student> register(Student student) {
         if (student == null) {
             throw new IllegalArgumentException("Student not exist");
         }
 
-        return studentRepository.save(student);
+        String encodePassword = PasswordUtils.generateSecurePassword(student.getPassword());
+
+        Student studentWithEncodePassword = (Student) student.clone(encodePassword);
+
+        return studentRepository.save(studentWithEncodePassword);
     }
 
     @Override
-    public Student findById(Long id) {
+    public Optional<Student> login(String email, String password) {
+        String encodePassword = PasswordUtils.generateSecurePassword(password);
+
+        Student student = studentRepository.findByEmail(email)
+                .orElseThrow(() -> new UncorrectLoginException("Login are not exist"));
+
+        String studentPassword = student.getPassword();
+
+        if(studentPassword.equals(encodePassword)){
+            return Optional.of(student);
+        }
+        throw new UncorrectLoginException("Password is uncorrected");
+    }
+
+
+    @Override
+    public Optional<Student> findById(Long id) {
         if (id < 0) {
             throw new IllegalArgumentException("Id must be positive");
         }
@@ -49,7 +72,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student deleteById(Long id) {
+    public Optional<Student> deleteById(Long id) {
         if (id < 0) {
             throw new IllegalArgumentException("Id must be positive");
         }

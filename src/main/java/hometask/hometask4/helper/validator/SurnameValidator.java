@@ -7,11 +7,7 @@ import java.util.regex.Pattern;
 
 @Component
 public final class SurnameValidator implements Validator {
-    private final String SURNAME_PATTERN = "[a-zA-Z]{1,}";
-
-    public SurnameValidator() {
-
-    }
+    private static final String SURNAME_PATTERN = "[a-zA-Z]{1,}";
 
     @Override
     public boolean validate(final String hex) {

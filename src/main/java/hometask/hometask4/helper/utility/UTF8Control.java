@@ -1,4 +1,4 @@
-package hometask.hometask4.helper.localization;
+package hometask.hometask4.helper.utility;
 
 import org.springframework.stereotype.Component;
 

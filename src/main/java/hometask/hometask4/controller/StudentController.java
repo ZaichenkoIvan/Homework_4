@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Component
 public class StudentController {
@@ -17,11 +18,15 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    public Student register(Student student) {
+    public Optional<Student> register(Student student) {
         return studentService.register(student);
     }
 
-    public Student findById(Long id) {
+    public Optional<Student> login(String email, String password) {
+        return studentService.login(email, password);
+    }
+
+    public Optional<Student> findById(Long id) {
         return studentService.findById(id);
     }
 
@@ -33,7 +38,7 @@ public class StudentController {
         studentService.update(student);
     }
 
-    public Student deleteById(Long id) {
+    public Optional<Student> deleteById(Long id) {
         return studentService.deleteById(id);
     }
 

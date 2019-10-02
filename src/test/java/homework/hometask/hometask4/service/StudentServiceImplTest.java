@@ -2,6 +2,7 @@ package homework.hometask.hometask4.service;
 
 import hometask.hometask4.domain.Department;
 import hometask.hometask4.domain.Student;
+import hometask.hometask4.helper.utility.PasswordUtils;
 import hometask.hometask4.repository.StudentRepository;
 import hometask.hometask4.service.StudentServiceImpl;
 import org.junit.After;
@@ -13,6 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,29 +36,44 @@ public class StudentServiceImplTest {
 
     @Test
     public void shouldReturnRegisterStudent() {
-        Student studentExpected = Student.builder().build();
-        when(studentRepository.save(any(Student.class))).thenReturn(studentExpected);
+        Student studentOldPassword = Student.builder().withEmail("123@gmail.com").withPassword("1234").build();
+        Student studentExpected = (Student) studentOldPassword.clone(PasswordUtils.generateSecurePassword(studentOldPassword.getPassword()));
 
-        Student studentActual = studentService.register(studentExpected);
-        assertEquals(studentExpected, studentActual);
+        when(studentRepository.findByEmail(any(String.class))).thenReturn(Optional.ofNullable(studentExpected));
+
+        Optional<Student> studentActual = studentService.login(studentOldPassword.getEmail(),studentOldPassword.getPassword());
+        studentActual.ifPresent(student -> assertTrue(PasswordUtils.verifyUserPassword(studentOldPassword.getPassword(),studentActual.get().getPassword())));
+        assertNotEquals("1234", studentActual.get().getPassword());
+    }
+
+    @Test
+    public void shouldReturnLoginStudent() {
+        Student studentOldPassword = Student.builder().withPassword("1234").build();
+        Student studentExpected = (Student) studentOldPassword.clone(PasswordUtils.generateSecurePassword(studentOldPassword.getPassword()));
+
+        when(studentRepository.save(any(Student.class))).thenReturn(Optional.ofNullable(studentExpected));
+
+        Optional<Student> studentActual = studentService.register(studentOldPassword);
+        studentActual.ifPresent(student -> assertTrue(PasswordUtils.verifyUserPassword(studentOldPassword.getPassword(),studentActual.get().getPassword())));
+        assertNotEquals("1234", studentActual.get().getPassword());
     }
 
     @Test
     public void shouldReturnStudentById() {
         Student studentExpected = Student.builder().build();
-        when(studentRepository.findById(1L)).thenReturn(studentExpected);
+        when(studentRepository.findById(1L)).thenReturn(Optional.ofNullable(studentExpected));
 
-        Student studentActual = studentService.findById(1L);
-        assertEquals(studentExpected, studentActual);
+        Optional<Student> studentActual = studentService.findById(1L);
+        studentActual.ifPresent(student -> assertEquals(studentExpected, student));
     }
 
     @Test
     public void shouldReturnDeleteStudent() {
         Student studentExpected = Student.builder().build();
-        when(studentRepository.deleteById(1L)).thenReturn(studentExpected);
+        when(studentRepository.deleteById(1L)).thenReturn(Optional.ofNullable(studentExpected));
 
-        Student studentActual = studentService.deleteById(1L);
-        assertEquals(studentExpected, studentActual);
+        Optional<Student> studentActual = studentService.deleteById(1L);
+        studentActual.ifPresent(student -> assertEquals(studentExpected, student));
     }
 
     @Test
@@ -101,9 +118,9 @@ public class StudentServiceImplTest {
         ArrayList<Student> studentsExpected = new ArrayList<>();
         studentsExpected.add(studentExpected);
 
-        when(studentRepository.findByDepartmentAndCourse(228L,4)).thenReturn(studentsExpected);
+        when(studentRepository.findByDepartmentAndCourse(228L, 4)).thenReturn(studentsExpected);
 
-        ArrayList<Student> studentsActual = studentService.findByDepartmentAndCourse(228L,4);
+        ArrayList<Student> studentsActual = studentService.findByDepartmentAndCourse(228L, 4);
         assertArrayEquals(studentsExpected.toArray(), studentsActual.toArray());
     }
 
