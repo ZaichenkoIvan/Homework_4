@@ -2,6 +2,8 @@ package hometask.hometask4.service;
 
 
 import hometask.hometask4.domain.Student;
+import hometask.hometask4.exception.UncorrectLoginException;
+import hometask.hometask4.helper.utility.PasswordUtils;
 import hometask.hometask4.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +26,28 @@ public class StudentServiceImpl implements StudentService {
             throw new IllegalArgumentException("Student not exist");
         }
 
-        return studentRepository.save(student);
+        String encodePassword = PasswordUtils.generateSecurePassword(student.getPassword());
+
+        Student studentWithEncodePassword = (Student) student.clone(encodePassword);
+
+        return studentRepository.save(studentWithEncodePassword);
     }
 
     @Override
     public Optional<Student> login(String email, String password) {
-        return studentRepository.findByEmail(email);
+        String encodePassword = PasswordUtils.generateSecurePassword(password);
+
+        Student student = studentRepository.findByEmail(email)
+                .orElseThrow(() -> new UncorrectLoginException("Login are not exist"));
+
+        String studentPassword = student.getPassword();
+
+        if(studentPassword.equals(encodePassword)){
+            return Optional.of(student);
+        }
+        throw new UncorrectLoginException("Password is uncorrected");
     }
+
 
     @Override
     public Optional<Student> findById(Long id) {
