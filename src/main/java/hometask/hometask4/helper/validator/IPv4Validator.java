@@ -6,13 +6,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public final class EmailValidator implements Validator {
-    private static final String EMAIL_PATTERN = "[a-zA-Z0-9]{1,}[@]{1}[a-z]{5,}[.]{1}+[a-z]{3}";
+public final class IPv4Validator implements Validator {
+    private static final String IPV4_PATTERN = "((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)";
 
     @Override
     public boolean validate(final String hex) {
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Pattern pattern = Pattern.compile(IPV4_PATTERN);
         Matcher matcher = pattern.matcher(hex);
         return matcher.matches();
     }
 }
+
