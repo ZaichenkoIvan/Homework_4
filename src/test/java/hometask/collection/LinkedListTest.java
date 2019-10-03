@@ -86,6 +86,6 @@ public class LinkedListTest {
             iterator.remove();
         }
 
-        assertEquals(doubles.size(), 2);
+        assertEquals(2, doubles.size());
     }
 }

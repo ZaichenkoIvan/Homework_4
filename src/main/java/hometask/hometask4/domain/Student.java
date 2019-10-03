@@ -20,7 +20,7 @@ public class Student implements Comparable<Student>, StudentPrototype {
     private final String password;
     private static Long counter = 0L;
 
-//    @Email(message = "{student.email.invalid}")
+    //    @Email(message = "{student.email.invalid}")
 //    @NotEmpty(message = "Please enter email")
     private final String email;
 
@@ -110,10 +110,12 @@ public class Student implements Comparable<Student>, StudentPrototype {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        int []a = {1,2,3,4};
-
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Student student = (Student) o;
         return course == student.course &&
                 Objects.equals(id, student.id) &&
@@ -152,7 +154,7 @@ public class Student implements Comparable<Student>, StudentPrototype {
 
     @Override
     public StudentPrototype clone(String newPassword) {
-        Address address = (Address)Optional.ofNullable(this.address)
+        Address address = (Address) Optional.ofNullable(this.address)
                 .map(Address::clone)
                 .orElse(null);
 
