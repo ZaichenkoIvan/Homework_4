@@ -79,10 +79,6 @@ public class LinkedListTest {
 
     @Test
     public void shouldReturnCorrectIterator() {
-        doubles.add(3D);
-        doubles.add(5D);
-        doubles.add(7D);
-
         Iterator<Double> iterator = doubles.iterator();
 
         iterator.next();
@@ -90,6 +86,6 @@ public class LinkedListTest {
             iterator.remove();
         }
 
-        assertEquals(doubles.size(), 5);
+        assertEquals(doubles.size(), 2);
     }
 }
