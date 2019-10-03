@@ -9,62 +9,62 @@ import java.util.Optional;
 import static java.util.Optional.ofNullable;
 import static org.junit.Assert.*;
 
-public class ArrayListTest {
-    private ArrayList<Double> doubles;
+public class LinkedListTest {
+    private LinkedList<Double> doubles;
 
     @Before
-    public void setUp(){
-        doubles = new ArrayList<>();
+    public void setUp() {
+        doubles = new LinkedList<>();
         doubles.add(4D);
         doubles.add(2D);
         doubles.add(8D);
     }
 
     @Test
-    public void shouldAddElementToArrayListInTheEnd() {
+    public void shouldAddElementToLinkedListInTheEnd() {
         doubles.add(5D);
-        assertEquals(doubles.size(),4);
+        assertEquals(doubles.size(), 4);
         assertEquals(Optional.of(5.0), ofNullable(doubles.get(3)));
 
     }
 
     @Test
-    public void shouldAddElementToArrayListByIndex() {
-        doubles.add(1,5D);
-        assertEquals(doubles.size(),4);
+    public void shouldAddElementToLinkedListByIndex() {
+        doubles.add(1, 5D);
+        assertEquals(doubles.size(), 4);
         assertEquals(Optional.of(5.0), ofNullable(doubles.get(1)));
     }
 
     @Test
-    public void shouldRemoveElementInArrayListByIndex() {
+    public void shouldRemoveElementInLinkedListByIndex() {
         doubles.remove(1);
-        assertEquals(doubles.size(),2);
+        assertEquals(doubles.size(), 2);
         assertEquals(Optional.of(8.0), ofNullable(doubles.get(1)));
     }
 
     @Test
-    public void shouldGetElementInArrayListByIndex() {
-        doubles.add(1,5D);
-        assertEquals(doubles.size(),4);
+    public void shouldGetElementInLinkedListByIndex() {
+        doubles.add(1, 5D);
+        assertEquals(doubles.size(), 4);
         assertEquals(Optional.of(5.0), ofNullable(doubles.get(1)));
     }
 
     @Test
-    public void shouldSetElementInArrayListByIndex() {
-        doubles.set(1,5D);
-        assertEquals(doubles.size(),3);
+    public void shouldSetElementInLinkedListByIndex() {
+        doubles.set(1, 5D);
+        assertEquals(doubles.size(), 3);
         assertEquals(Optional.of(5.0), ofNullable(doubles.get(1)));
     }
 
     @Test
-    public void shouldReturnSizeOfArrayList() {
-        assertEquals(doubles.size(),3);
-        doubles.add(1,5D);
-        assertEquals(doubles.size(),4);
+    public void shouldReturnSizeOfLinkedList() {
+        assertEquals(doubles.size(), 3);
+        doubles.add(1, 5D);
+        assertEquals(doubles.size(), 4);
     }
 
     @Test
-    public void shouldReturnTrueIfEmptyArrayList() {
+    public void shouldReturnTrueIfEmptyLinkedList() {
         doubles.remove(0);
         doubles.remove(0);
         doubles.remove(0);
@@ -72,19 +72,24 @@ public class ArrayListTest {
     }
 
     @Test
-    public void shouldRemoveArrayList() {
+    public void shouldRemoveLinkedList() {
         doubles.clean();
         assertTrue(doubles.isEmpty());
     }
 
     @Test
     public void shouldReturnCorrectIterator() {
+        doubles.add(3D);
+        doubles.add(5D);
+        doubles.add(7D);
+
         Iterator<Double> iterator = doubles.iterator();
+
         iterator.next();
-        while(iterator.hasNext())
-        {
+        if (iterator.hasNext()) {
             iterator.remove();
         }
-        assertEquals(doubles.size(),1);
+
+        assertEquals(doubles.size(), 5);
     }
 }
