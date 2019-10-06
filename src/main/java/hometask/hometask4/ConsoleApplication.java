@@ -1,5 +1,6 @@
 package hometask.hometask4;
 
+import hometask.collection.ArrayList;
 import hometask.hometask4.init.Menu;
 import hometask.hometask4.view.StudentViewInfo;
 import org.springframework.beans.factory.annotation.Autowired;
