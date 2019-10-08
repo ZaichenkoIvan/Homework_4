@@ -14,19 +14,19 @@ public class Main {
 
         Class<Singleton> singletonClass = Singleton.class;
 
-        //Not static method without parameters
+        //Not static mergeByCounter without parameters
         Method method1 = singletonClass.getDeclaredMethod("notStaticMethod");
         method1.setAccessible(true);
         System.out.println(method1.getName());
         Object invoke1 = method1.invoke(singleton1);
 
-        //Not static method with parameter
+        //Not static mergeByCounter with parameter
         Method method2 = singletonClass.getDeclaredMethod("notStaticMethod", int.class);
         method2.setAccessible(true);
         System.out.println(method2.getName());
         Object invoke2 = method2.invoke(singleton1, 1);
 
-        //Static method without parameters
+        //Static mergeByCounter without parameters
         Method method3 = singletonClass.getDeclaredMethod("staticMethod");
         method3.setAccessible(true);
         System.out.println(method3.getName());

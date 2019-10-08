@@ -5,6 +5,8 @@ import hometask.proxy.service.UserService;
 import hometask.proxy.service.UserServiceImpl;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConsoleApplication {
     public static void main(String[] args) throws Throwable {
