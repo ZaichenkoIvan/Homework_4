@@ -1,6 +1,7 @@
 package hometask.parser.json;
 
 import com.google.gson.Gson;
+import hometask.parser.User;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class ParseFromJson {
 
         Gson gson = new Gson();
 
-        try (Reader reader = new FileReader("c:\\log\\staff.json")) {
+        try (Reader reader = new FileReader("c:\\log\\user.json")) {
 
             User user = gson.fromJson(reader, User.class);
 
