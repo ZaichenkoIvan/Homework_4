@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ReadFromFile {
-    private static final String FILE ="D:\\string.txt";
+    private static final String FILE ="src/main/resources/file/string.txt";
 
     public static void main(String[] args) throws IOException {
         String text = readOneTask(FILE);

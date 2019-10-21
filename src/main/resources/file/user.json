@@ -1,0 +1,9 @@
+{
+  "name": "Ivan",
+  "surname": "Zaichenko",
+  "age": 20,
+  "skills": [
+    "First 111",
+    "Second 222"
+  ]
+}
